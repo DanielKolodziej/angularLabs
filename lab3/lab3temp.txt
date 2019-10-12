@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+  
+<head>
+    
+<link rel="stylesheet" href="style.css">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    
+<script src="script.js"></script>
+  
+</head>
+
+  
+<body ng-app="myApp">
+  
+<h1>Temp Converter</h1>
+  
+<h2>Choose a starting Cel temp to convert</h2>
+  
+<div ng-controller="MainCtrl">
+  
+Celsius Temp: <input type="text" ng-model="num1"><br/>
+  
+<!--buttons attached with click functions to perform conversion-->
+  
+<input type="button" ng-click="conv1(num1)" value="toFahren"><br/>
+   
+<!-- new values of Fahrenheit and Celsius are displayed-->
+   
+newFahren : {{result}} <br>
+   
+<div ng-repeat="n in [] | range:20">
+     
+{{$index + 1}}. Val={{nums+$index}}
+     ------- Res={{result+($index*1.8)}}
+   
+</div>
+   
+</div>
+   
+</body>
+
+</html>
+
+var app = angular.module('myApp', []);
+
+app.controller('MainCtrl', function
+  
+($scope) {
+    
+//°F to °C
+    
+//Deduct 32, then multiply by 5, then divide by 9
+    
+//°C to °F
+    
+//Multiply by 9, then divide by 5, then add 32
+    
+//1st function convert Celsius to Fahrenheit
+    
+$scope.conv1=function(num1) {
+        
+$scope.result=((parseInt(num1)*9)/5) +32;
+         
+$scope.nums=parseInt(num1);
+    
+};
+  
+});
+  
+app.filter('range', function() {
+    
+return function(input, total) {
+      
+total = parseInt(total);
+      
+for (var i=1; i<=total; i++)
+        
+	input.push(i);
+      
+return input;
+    
+};
+  
+});

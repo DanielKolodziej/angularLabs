@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="StyleSheet1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <script src="Script1.js"></script>
+    <title>ATM</title>
+</head>
+<body>
+
+<h1>Form Validation</h1>
+<!--novalidate to escape default browser validate setting-->
+<form ng-app="myApp" ng-controller="validateCtrl" name="myForm" novalidate>
+
+
+<!--HTML5 attribute required to specify that the input field must be filled out
+$dirty The field has been modified
+$invalid The field content is not valid
+$valid The field content is valid
+They are all properties of the input field, and are either true or false.-->
+
+<!-- required in order to for values to be entered-->
+<p>First name:<br>
+<input type="text" name="first" placeholder="John" ng-model="first" required>
+<!-- show, in red only when firstname input has been modified and invalid-->
+<span style="color:red" ng-show="myForm.first.$dirty && myForm.first.$invalid">
+<span ng-show="myForm.first.$error.required">first name is required.</span>
+</span>
+</p>
+
+<p>Last Name:<br>
+<input type="text" name="last" placeholder="Doe" ng-model="last" required>
+<!-- show, in red only when lastname input has been modified and invalid-->
+<span style="color:red" ng-show="myForm.last.$dirty && myForm.last.$invalid">
+<span ng-show="myForm.last.$error.required">last name is required.</span>
+</span>
+</p>
+
+<p>SSN:<br>
+<input type="number" name="ssnNum" placeholder="#########" ng-model="ssnNum" required>
+<!-- show, in red only when ssn input has been modified and invalid-->
+<span style="color:red" ng-show="myForm.ssnNum.$dirty && myForm.ssnNum.$invalid">
+<span ng-show="myForm.ssnNum.$error.required">SSN is required.</span>
+</span>
+</p>
+<!-- newsletter not required -->
+<input name="subscribe" type="checkbox" ng-model="subscribeNews">
+      <label for="subscribe">Subscribe to our newsletter</label>
+
+<!-- checkbox to accept conditions is required, show message in red if changed and false-->
+<div>
+	<input name="acceptTC" type="checkbox" ng-model="acceptConds" required>
+		  <label for="acceptTC">Accept Terms and Conditions</label>
+		  <span style="color:red" ng-show="myForm.acceptTC.$dirty && !acceptConds">
+		  <span ng-show="myForm.acceptTC.$error.required">Please accept the terms.</span>
+		  </span>
+</div>
+
+<!--button disabled using ng-disabled when required fields are invalid-->
+<!--when able to click, calls function to further check validity-->
+
+<p>
+<input type="submit" value="Submit Form" ng-click="checkForm()"
+ng-disabled="myForm.first.$invalid || myForm.last.$invalid || myForm.ssnNum.$invalid || !acceptConds">
+</p>
+
+</form>
+</body>
+</html>

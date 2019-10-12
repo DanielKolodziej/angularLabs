@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="myApp" ng-controller="MainCtrl">
+
+  
+<head>
+    
+<link rel="stylesheet" href="style.css">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    
+<script src="script.js"></script>
+  
+</head>
+
+  
+<body ng-controller="MainCtrl">
+    
+<h1>Login Page</h1>
+    
+<!--form for user and pass-->
+    
+<form name="myForm" novalidate>
+  <p>User name:<br>
+<input type="text" name="username" placeholder="admin" ng-model="username" required>
+<!-- show, in red only when firstname input has been modified and invalid-->
+<span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+<span ng-show="myForm.username.$error.required">user name is required.</span>
+</span>
+</p>
+<p>Password:<br>
+<input type="password" name="password" placeholder="admin" ng-model="password" required>
+<!-- show, in red only when firstname input has been modified and invalid-->
+<span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+<span ng-show="myForm.password.$error.required">password is required.</span>
+</span>
+</p>
+      
+<button type="submit" ng-click="login()">login</button><br><br><!--login2(username)-->
+<button type="submit" ng-click="submit()">Sign up</button> 
+</form><br>
+
+</body>
+
+</html>

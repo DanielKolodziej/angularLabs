@@ -1,0 +1,65 @@
+HERE ARE THE FOLLOWINF REQUIRMENTS FOR YOUR PROJECT:
+Requirements:
+    I want you to create a pay scale you will need to do the following:
+I need labels and Textbox's for the user to enter the First name and Last name  
+I need a label and textbox for Hours worked 
+I need hourly pay rate to be a constant variable you can determine what "you" 
+want there hourly pay rate to be.
+I want you to calculate the weekly, biweekly, monthly and yearly pay. 
+Once everything is calculated I will need you to output the user's first and 
+last name and the biweekly(This needs a button), monthly(This needs a button) 
+and yearly pay(This needs a Button as well). Lastly you will need one textbox 
+to be linked to all 3 of those buttons. Therefore the user can see there pay 
+amount. 
+THIS IS DUE ON JUNE 20TH BY 11:59PM I will give extra credit if it is submited 
+by Monday June 18th.
+
+<!DOCTYPE html>
+
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body ng-app="myApp">
+ 
+<div ng-controller="myCtrl"> 
+First: <input ng-model="first"><br>
+last: <input ng-model="last"><br>
+hours: <input ng-model="hours">
+<h1>You entered: {{first}}</h1>
+<h1>You entered: {{last}}</h1>
+<h1>You entered: {{hours}}</h1>
+<h1>Your rate: {{rate}}</h1>
+<input type="button" ng-click="week()" value="weekly">
+<input type="button" ng-click="bi()" value="biweekly">
+<input type="button" ng-click="mon()" value="mon">
+<input type="button" ng-click="yr()" value="yr">
+ Pay Scale: {{type}} <input type="text" value="{{result}}">
+</div>
+ 
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function
+($scope) {
+    $scope.first = "John";
+    $scope.last = "Doe";
+    $scope.rate = 22;
+	$scope.type = "";
+	$scope.week=function() {
+        $scope.result=$scope.hours*$scope.rate;
+		$scope.type="WEEKLY";
+    };
+    $scope.bi=function() {
+        $scope.result=$scope.hours*$scope.rate*2;
+		$scope.type="BIWEEKLY";
+    };
+    $scope.mon=function() {
+        $scope.result=$scope.hours*$scope.rate*4;
+		$scope.type="MONTHLY";
+    };
+    $scope.yr=function() {
+        $scope.result=$scope.hours*$scope.rate*50;
+		$scope.type="YEARLY";
+    };
+});
+</script>
+</body>
+</html>

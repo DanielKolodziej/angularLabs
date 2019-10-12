@@ -1,0 +1,16 @@
+﻿/* changes colors of input fields depending on current state */
+input.ng-invalid {
+    background-color: pink;
+}
+input.ng-valid {
+    background-color: lightgreen;
+}
+input.ng-pristine {
+	background-color: white;
+}
+
+/*
+ng-pristine The field has not been  modified yet
+ng-valid The field content is valid
+ng-invalid The field content is not valid
+*/

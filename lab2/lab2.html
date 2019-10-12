@@ -1,0 +1,40 @@
+﻿<!--Daniel Kolodziej, ITMD 419, Lab2-->
+<!DOCTYPE html>
+<!--needed for the js-->
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+</script>
+<html>
+
+<body ng-app="myApp">
+<h1>Temp Converter</h1>
+<div ng-controller="MainCtrl">
+Celsius Temp: <input type="text" ng-model="num1"><br/>
+Fahrenheit Temp: <input type="text" ng-model="num2"><br/>
+<!--buttons attached with click functions to perform conversion-->
+<input type="button" ng-click="conv1(num1)" value="toFahren"><br/>
+<input type="button" ng-click="conv2(num2)" value="toCel"><br/>
+ <!-- new values of Fahrenheit and Celsius are displayed-->
+ newFahren : {{result}} </br>
+ newCel : {{result2}}
+</div>
+</html>
+
+<script>
+//Module to store the controllers
+var app = angular.module('myApp', []);
+app.controller('MainCtrl', function
+  ($scope) {
+    //°F to °C
+    //Deduct 32, then multiply by 5, then divide by 9
+    //°C to °F
+    //Multiply by 9, then divide by 5, then add 32
+    //1st function convert Celsius to Fahrenheit
+    $scope.conv1=function(num1) {
+        $scope.result=((parseInt(num1)*9)/5) +32;
+    };
+    //2nd function convert Fahrenheit to Celsius
+    $scope.conv2=function(num2) {
+        $scope.result2=((parseInt(num2)-32)*5)/9;
+    };
+  });
+</script>

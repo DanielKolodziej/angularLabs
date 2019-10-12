@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js" data-require="angular.js@4.0.0" data-semver="4.0.0"></script>
+    <script src="script.ts" data-require="angular.js@4.0.0" data-semver="4.0.0"></script>
+    <script src="system.config.js" data-require="angular.js@4.0.0" data-semver="4.0.0"></script>
+    <script src="tsconfig.json" data-require="angular.js@4.0.0" data-semver="4.0.0"></script>
+    <link href="style.css" rel="stylesheet" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-app="myApp" ng-controller="MainCtrl">
+    
+<h1>D Bank's ATM machine</h1>
+    
+    <!--HTML5 attribute required to specify that the input field must be filled out
+    $dirty The field has been modified
+    $invalid The field content is not valid
+    $valid The field content is valid
+    They are all properties of the input field, and are either true or false.-->
+    
+    <!-- required in order to for values to be entered-->
+    <p>Initial Balance: {{bal}}<br></p>
+    
+    <form name="myForm" novalidate>
+      <p>Make a Deposit:<br>
+      <input type="number" name="deposit" ng-model="deposit" required>
+      <input type="submit" value="Deposit" ng-click="depo(deposit)" ng-disabled="myForm.deposit.$invalid">
+      </p>
+    
+      <p>Make a Withdrawal:<br>
+      <input type="number" name="withdraw" ng-model="withdraw" required>
+      <input type="submit" value="Withdraw" ng-click="withd(withdraw)" ng-disabled="myForm.withdraw.$invalid">
+      </p>
+      
+      <p>Your Current Balance: {{newBal}}<br></p>
+      
+      <p><label>Check Interest Accrual: <br><select ng-model="selectedItem" ng-options="x.name for x in items track by x.name"></select></label>
+      <input type="submit" value="Interest" ng-click="interest(selectedItem.value)">
+      Total: ${{result2}}
+      </p>
+    </form>
+    
+    <p>
+    <input type="submit" value="Logout" ng-click="back()">
+    </p>
+  
+</body>
+
+</html>

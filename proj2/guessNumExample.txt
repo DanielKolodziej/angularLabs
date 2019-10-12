@@ -1,0 +1,102 @@
+// JavaScript source code
+ angular.module('myApp',[])
+		.controller('GuessTheNumberController', GuessTheNumberController);
+		function GuessTheNumberController($scope) {
+			//array to track all user guesses during a session
+			$scope.userGuesses = [];
+			//default selected name game mode
+			$scope.selectedItem = {name: "medium", value: 20};
+			//array value of three game modes dictating the max value
+			$scope.items = [
+			{name: "easy", value: 10},
+			{name: "medium", value: 20},
+			{name: "hard", value: 100}
+			];
+			//default start value
+			$scope.default = 20;
+			//function to check user input validity and keep track of tries
+			$scope.checkGuess = function () {
+				//if input is higher or lower than random value
+				$scope.deviation = $scope.original - $scope.guess;
+				//user attempts
+				$scope.tries = $scope.tries + 1;
+				var guess = $scope.guess;
+				//pushes user guesses into array
+				$scope.userGuesses.push(guess);
+				//if not a number, display alert and remove from array
+				if (isNaN(guess) == true){
+					alert("Not a Number! Try again");
+					$scope.tries = $scope.tries - 1;
+					$scope.userGuesses.pop();
+				//if null, display alert and remove from array
+				} else if (guess == null){
+					alert("Must Enter Value! Try again");
+					$scope.tries = $scope.tries - 1;
+					$scope.userGuesses.pop();
+				//if guess matches, display win alert and reset game
+				} else if ($scope.guess == $scope.original){
+					alert("You WIN, the winning number was :" + $scope.original)
+					$scope.initializeGame($scope.default);
+				//if attempts more than 4, display lose alert, all guesses, and reset game
+				} else if ($scope.tries > 4){
+					alert("You lose, the winning number was : " + $scope.original + "\n" +
+					"Your guesses were : " + $scope.userGuesses);
+					$scope.initializeGame($scope.default);
+				}
+			};
+			//function to initialize and reset the game based on chosen difficulty
+			$scope.initializeGame=function(max) {
+				$scope.default = max;
+				$scope.userGuesses = [];
+				$scope.tries = 0;
+				$scope.original = Math.floor((Math.random() * $scope.default) + 1);
+				$scope.guess = null;
+				$scope.deviation = null;
+			};
+			//initialize with default val
+			$scope.initializeGame($scope.default);
+		}
+
+----------------
+
+<!--Daniel Kolodziej, ITMD-419, Project2-->
+<!--Citation(helped as initial example) https://technology.vishalsrini.com/game-guess-number-angular/ -->
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+    <title>Proj2_Lottery</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <script src="Script1.js"></script>
+  </head>
+<body ng-app="myApp">
+  <div ng-controller="GuessTheNumberController">
+	<h2>Guess the Number !</h2>
+	<!-- allow user to choose difficulty options and changes when selecting a new option-->
+	<label>Game Mode: <select ng-model="selectedItem" ng-options="x.name for x in items track by x.name" ng-change="initializeGame(selectedItem.value)"></select></label>
+	<p>Guess the computer generated random number between 1 and {{selectedItem.value}}.</p>
+	<!-- User input-->
+	<label>Your Guess: </label><input type="number" ng-model="guess"/>
+	<!-- button to activate checkGuess function-->
+	<button ng-click="checkGuess()">Play!</button>	
+	<!-- button to activate reset function-->
+	<button ng-click="initializeGame(selectedItem.value)">Restart</button>	
+		<!-- based on deviation value, string displays for user whether guess was too high or low -->
+		<p ng-show="deviation<0">Your guess is higher.</p>
+		<p ng-show="deviation>0">Your guess is lower.</p>
+		<p ng-show="deviation===0">Correct!</p>
+	<!--  Used for testing purposes ---- <p>The winning number:{{original}}</p>-->
+	<!-- Display number of guesses-->
+	<p>Number of guesses :{{tries}}</p>
+	<!--display array with ng-repeat-->   
+	<h2>User Guess Attempts</h2>   
+		<ul>     
+			<li ng-repeat="guess in userGuesses">       
+				<a>{{guess}}</a>     
+			</li>   
+		</ul>
+</div>
+   </body>
+</html>

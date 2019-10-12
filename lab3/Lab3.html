@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <script src="Script1.js"></script>
+  </head>
+
+  <body ng-app="myApp">
+  <h1 ng-init="myvar = false">Temp Converter</h1>
+  <h2>Choose a starting Cel temp to convert</h2>
+  <div ng-controller="MainCtrl">
+  Celsius Temp: <input type="text" ng-model="num1"><br/>
+  <!--buttons attached with click functions to perform conversion-->
+  <input type="button" ng-click="conv1(num1); myvar = true" value="toFahren"><br/>
+   <!-- new values of Fahrenheit and Celsius are displayed-->
+   newFahren : {{result}} <br>
+   <!--ng-if directive to display only when button is clicked-->
+   <!--ng-repeat directive for loop through designated range-->
+   <div ng-if="myvar" ng-repeat="n in [] | range:20">
+	 {{$index + 1}}. Value={{nums+$index}}
+     ------- Result={{result+($index*1.8)}}
+   </div>
+   </div>
+   </body>
+</html>

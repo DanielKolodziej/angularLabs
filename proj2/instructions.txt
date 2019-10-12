@@ -1,0 +1,19 @@
+Here are the following requirements for Project 2:
+                           Project is called GUESSING GAME
+                           1. Figure out how to output a random number.
+                           2. Secondly ask the user to Enter a Number.
+                           3. The player will have either 5 or 10 attempts to guess the lucky Random Number. 
+				**Please make sure the Random number is from either 0 to 20**
+                           4. If the user guesses the correct number output a MESSAGE break out of the loop.
+                           5. If the user guesses the wrong number while within the attempts OUTPUT a message
+				 from step #2.
+                           6. If the user have exhaust all of the attempts OUTPUT a message  "You Lose Go Home"
+    You are required to have:
+                       1. I need a few labels, textbox and a button 
+                             2.  If/else statements
+                             3.  Either a Do/while, while or For loop.                 
+                         
+          Here are some extra credit points:
+                                 1. Give the user a certain amount of seconds to guess the number.
+                                 2. Post an "ERROR MESSAGE" if the user enter characters instead of values.                                               3. SUBMIT IT ON 27TH OF JUNE BY 11:59PM.
+        THIS IS DUE ON 7/5/18 BY 11:59PM

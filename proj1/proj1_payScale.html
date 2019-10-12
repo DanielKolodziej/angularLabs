@@ -1,0 +1,65 @@
+﻿<!--Daniel Kolodziej, ITMD-419, Project1-->
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!--<script src="Script1.js"></script>-->
+
+</head>
+<body ng-app="myApp">
+ 
+<div ng-controller="myCtrl"> 
+
+<!--user input first, last, and num hours worked-->
+First: <input ng-model="first"><br>
+last: <input ng-model="last"><br>
+hours: <input ng-model="hours">
+
+<!--display user entered results-->
+<h1>You entered: {{first}}</h1>
+<h1>You entered: {{last}}</h1>
+<h1>You entered: {{hours}}</h1>
+<h1>Your rate: {{rate}}</h1>
+
+<!--buttons attached to function to calc pay scale-->
+<input type="button" ng-click="week()" value="weekly">
+<input type="button" ng-click="bi()" value="biweekly">
+<input type="button" ng-click="mon()" value="mon">
+<input type="button" ng-click="yr()" value="yr">
+<!--pay scale result displayed based on what was clicked-->
+ Pay Scale: {{type}} <input type="text" value="{{result}}">
+</div>
+</body>
+</html>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function
+($scope) {
+    $scope.first = "Joe";
+    $scope.last = "Dirt";
+	//Chosen default rate
+    $scope.rate = 22;
+	//type var for chosen pay
+	$scope.type = "";
+	//functions to calc pay based on rate and hours
+	$scope.week=function() {
+        $scope.result=$scope.hours*$scope.rate;
+		$scope.type="WEEKLY";
+    };
+    $scope.bi=function() {
+        $scope.result=$scope.hours*$scope.rate*2;
+		$scope.type="BIWEEKLY";
+    };
+    $scope.mon=function() {
+        $scope.result=$scope.hours*$scope.rate*4;
+		$scope.type="MONTHLY";
+    };
+    $scope.yr=function() {
+        $scope.result=$scope.hours*$scope.rate*50;
+		$scope.type="YEARLY";
+    };
+});
+</script>

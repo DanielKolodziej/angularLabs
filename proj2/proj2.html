@@ -1,0 +1,42 @@
+﻿<!--Daniel Kolodziej, ITMD-419, Project2-->
+<!--Citation(helped as initial example) https://technology.vishalsrini.com/game-guess-number-angular/ -->
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+    <title>Proj2_Lottery</title>
+    <link rel="stylesheet" href="StyleSheet1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <script src="Script1.js"></script>
+  </head>
+<body ng-app="myApp">
+  <div ng-controller="GuessTheNumberController">
+	<h2>Guess the Number !</h2>
+	<!-- allow user to choose difficulty options and changes when selecting a new option-->
+	<label>Game Mode: <select ng-model="selectedItem" ng-options="x.name for x in items track by x.name" ng-change="initializeGame(selectedItem.value)"></select></label>
+	<p>Guess the computer generated random number between 1 and {{selectedItem.value}}.</p>
+	<!-- User input-->
+	<label>Your Guess: </label><input type="number" ng-model="guess"/>
+	<!-- button to activate checkGuess function-->
+	<button ng-click="checkGuess()">Play!</button>	
+	<!-- button to activate reset function-->
+	<button ng-click="initializeGame(selectedItem.value)">Restart</button>	
+		<!-- based on deviation value, string displays for user whether guess was too high or low -->
+		<p ng-show="deviation<0">Your guess is higher.</p>
+		<p ng-show="deviation>0">Your guess is lower.</p>
+		<p ng-show="deviation===0">Correct!</p>
+	<!--  Used for testing purposes ---->
+	<!-- UNCOMMENT IF NEEDED FOR TESTING  <p>The winning number:{{original}}</p>  -->
+	<!-- Display number of guesses-->
+	<p>Number of guesses :{{tries}}</p>
+	<!--display array with ng-repeat-->   
+	<h2>User Guess Attempts</h2>   
+		<ul>     
+			<li ng-repeat="guess in userGuesses">       
+				<a>{{guess}}</a>     
+			</li>   
+		</ul>
+	</div>
+   </body>
+</html>

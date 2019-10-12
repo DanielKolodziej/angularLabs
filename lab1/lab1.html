@@ -1,0 +1,52 @@
+﻿<!--Daniel Kolodziej, ITMD-419, Lab1-->
+<!DOCTYPE html>
+
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+</script>
+<html>
+
+<!--ng-app directive to let body become root element-->
+<body ng-app="myApp">
+<h1>Simple Calculator application</h1>
+<!--ng-controller directive as Javascript object to control the data-->
+<div ng-controller="myCtrl">
+<!-- ng-model directive binds input to property in the scope-->
+1st Number: <input type="text" ng-model="num1"><br/>
+2nd Number: <input type="text" ng-model="num2"><br/>
+<!-- buttons with on click functions to allow an action-->
+<input type="button" ng-click="add(num1,num2)" value="ADD"><br/>
+<input type="button" ng-click="sub(num1,num2)" value="SUBTRACT"><br/>
+<input type="button" ng-click="mul(num1,num2)" value="MULTIPLY"><br/>
+<input type="button" ng-click="div(num1,num2)" value="DIV"><br/>
+<input type="button" ng-click="mod(num1,num2)" value="MOD"><br/>
+<!-- accessing/printing result variable enclosed {{}}-->
+Sum : {{result}}
+</div>
+</html>
+
+<script>
+//Module needed as container for application controllers
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    //1st function ADD two numbers
+    $scope.add=function(num1,num2) {
+        $scope.result=parseInt(num1)+parseInt(num2);
+    };
+    //2nd function SUBTRACT two numbers
+    $scope.sub=function(num1,num2) {
+        $scope.result=parseInt(num1)-parseInt(num2);
+    };
+    //3rd function MULTIPLY two numbers
+    $scope.mul=function(num1,num2) {
+        $scope.result=parseInt(num1)*parseInt(num2);
+    };
+    //4th function DIVIDE two numbers
+    $scope.div=function(num1,num2) {
+        $scope.result=parseInt(num1)/parseInt(num2);
+    };
+    //5th function MODULUS of two numbers
+    $scope.mod=function(num1,num2) {
+        $scope.result=parseInt(num1)%parseInt(num2);
+    };
+  });
+</script>

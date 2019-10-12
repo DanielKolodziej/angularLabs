@@ -1,0 +1,266 @@
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<h1>{{carname}}</h1>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.carname = "Benz";
+});
+</script>
+property "carname" was made in the controller and can be referred to in the 
+view by using the {{}} brackets
+
+---------------------------------ARRAYS, NG-REPEAT------------------------------
+<!--LOGIN EXAMPLE (arrays--list users in array that found in form)-->
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+
+  
+<head>
+    
+<link rel="stylesheet" href="style.css">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    
+<script src="script.js"></script>
+  
+</head>
+
+  
+<body ng-controller="MainCtrl">
+    
+<h1>Login!</h1>
+    
+<!--form for user and pass-->
+    
+<form>
+      
+<label>Username:</label><input type="text" ng-model="username"/> <br>
+      
+<label>Password:</label><input type="password" ng-model="password"/> <br>
+      
+<button type="submit" ng-click="submit()">login</button> 
+    
+</form>
+    
+    
+<!--display array with ng-repeat-->
+    
+<h2>user table</h2>
+    
+<ul>
+      
+<li ng-repeat="user in myusers">
+        
+<a>{{user.username}}</a>
+      
+</li>
+    
+</ul>
+  
+</body>
+
+</html>
+
+// JS FILE//////////////
+var app = angular.module('myApp', []);
+
+app.controller('MainCtrl', function
+  ($scope) {
+	
+$scope.name = "World";
+	
+$scope.myusers = [{
+	  
+username:'user1',
+	  
+password:'123123'
+	
+},
+	
+{
+	  
+username:'user2',
+	  
+password:'123234'
+	
+}];
+    
+$scope.submit = function(){
+	  
+if($scope.username && $scope.password){
+	    
+var user = $scope.username;
+	    
+var pass = $scope.password;
+	    
+alert("Welcome " + user);
+	    
+	    
+$scope.myusers.push({
+	      
+username: user,
+	      
+password: pass
+	    
+});
+	  
+} else {
+	    
+alert("Invalid Login");
+	  
+}
+	
+};
+  
+});
+
+--------------------------------------------------------------------
+//WHILE LOOPS
+
+//var i = 1;
+
+//while (i<5){
+  
+//do something;
+  
+//i++
+
+//}
+
+
+//DO-WHILE LOOPS
+
+//var i = 1;
+
+//do{
+  
+//do something;
+  
+//i++
+
+//} while (i<5);
+
+
+//FOR LOOP AND BREAK
+
+//var days = ["Monday", "Tuesday", "Wednesday", "Thursday"];
+
+//for (var idx in days){
+  //if (days[idx] == "Wednesday")
+    
+//break;
+//}
+
+//vars to functions
+//function greeting(name, city){
+  
+//alert("Hello" + name);
+  //alert("How is the weather in " + city);
+
+//}
+
+//var name = "Brad";
+
+//greeting(name, "Chicago");
+
+
+//vars return to functions
+
+//function greeting(name, city){
+  
+//var str = "";
+  
+//str += "Hello " + name;
+  
+//str +="Welcome to " + city;
+  
+//return str;
+
+//}
+
+//var greet = greeting("Brad", "Rome");
+
+
+//OBJECTS
+//var x = new Number("5");
+
+//var s = myObj.name;
+
+//myObj.name = "New Name";
+--------------------------------------------TRY/CATCH----------------------------------------
+try{
+	var x = badVarName;
+} catch (err){
+	alert(err.name + ': "' + err.message + '" occurred when assigning x.');
+}
+
+------------------------------------NG-OPTIONS-----------------------------------
+<!DOCTYPE html>
+
+<html ng-app="myApp">
+
+  
+<head>
+    
+<meta charset="utf-8" />
+    
+<title>Looping it up Example</title>
+    
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    
+<script src="script.js"></script>
+  
+</head>
+
+  
+<body>
+    
+<h1>Hey Hey Loop It up</h1>
+    
+<div ng-repeat="n in [] | range:20">
+      
+do something number now {{$index}}
+    
+</div>
+    
+    
+<div ng-controller="MainCtrl">
+      
+<select ng-model="selectName" ng-options="x for x in names"></select>
+    
+</div>
+  
+</body>
+
+</html>
+//JS CODE
+// Code goes here
+
+var app = angular.module('myApp', []);
+
+
+app.controller('MainCtrl', function($scope) {
+  $scope.names = ["Dan", "Jan", "Ban"];
+
+});
+
+
+app.filter('range', function() {
+  
+return function(input, total) {
+    
+total = parseInt(total);
+    
+for (var i=0; i<total; i++)
+      
+input.push(i);
+    
+return input;
+  
+};
+
+});
